@@ -13,7 +13,7 @@
 #Persistent
 SetBatchLines -1
 SetTitleMatchMode, 2
-#If or WinActive("OSBuddy")
+;#If or WinActive("OSBuddy")
 ; Ok, continue reading
 
 ;===============================================================
