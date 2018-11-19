@@ -27,17 +27,22 @@ Return
         SetCapsLockState, AlwaysOff
     return
 
-; alt+| (pipe) for curly brackets
+; alt+h for paranthesis
+; alt+j for brackets
+; alt+k for braces
 
-!|::
-send {{}
-send {}}
+!h::
+send {(}
+send {)}
 send {Left}
 return
-
-; ctrl+| (pipe) for square brackets
-^|::
+!j::
 send {[}
 send {]}
+send {Left}
+return
+!k::
+send {{}
+send {}}
 send {Left}
 return
