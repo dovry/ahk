@@ -26,3 +26,18 @@ Return
       else
         SetCapsLockState, AlwaysOff
     return
+
+; alt+| (pipe) for curly brackets
+
+!|::
+send {{}
+send {}}
+send {Left}
+return
+
+; ctrl+| (pipe) for square brackets
+^|::
+send {[}
+send {]}
+send {Left}
+return
