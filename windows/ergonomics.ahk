@@ -15,8 +15,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
   ExitApp
 
 
-; Set CapsLock as backspace
-CapsLock:: Send {BackSpace}
+; Set CapsLock as CTRL
+CapsLock::Ctrl
 Return
 
 ; toggle Capslock
@@ -27,21 +27,21 @@ Return
         SetCapsLockState, AlwaysOff
     return
 
-; alt+h for paranthesis
-; alt+j for brackets
-; alt+k for braces
+; alt+y for paranthesis
+; alt+u for brackets
+; alt+i for braces
 
-!h::
+!y::
 send {(}
 send {)}
 send {Left}
 return
-!j::
+!u::
 send {[}
 send {]}
 send {Left}
 return
-!k::
+!i::
 send {{}
 send {}}
 send {Left}
