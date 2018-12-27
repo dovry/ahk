@@ -20,7 +20,7 @@ CapsLock::Ctrl
 Return
 
 ; toggle Capslock
-    $*+CapsLock::
+    >+CapsLock::
       if GetKeyState("Capslock", "T") = 0
         SetCapsLockState, On
       else
