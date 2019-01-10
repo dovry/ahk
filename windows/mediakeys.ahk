@@ -13,11 +13,11 @@ SetWorkingDir, %A_ScriptDir%
 Return
 
 ; Prev
-!F11::Send {Media_Prev}
+!F10::Send {Media_Prev}
 Return
 
 ; Skip
-!F10::Send {Media_Next}
+!F11::Send {Media_Next}
 Return
 
 ; volume down
