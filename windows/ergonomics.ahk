@@ -3,52 +3,55 @@
 #Persistent
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#EscapeChar, \
 
-;Pauses the script // Shift+Escape
-+Esc::
-  Suspend, Toggle
-  return
+; Pauses the script // Rshift+Escape
+>+Esc::Suspend, Toggle
+return
   
-;Exits the script // Ctrl+Shift+Escape
-^+Esc:: 
-  ExitApp
+; Exits the script // RCtrl+Escape
+>^Esc::ExitApp
 
-; Set CapsLock as CTRL
-CapsLock::Ctrl
-Return
+; RShift+Capslock to toggle CapsLock
+>+CapsLock::CapsLock
 
-; toggle Capslock
-    >+CapsLock::
-      if GetKeyState("Capslock", "T") = 0
-        SetCapsLockState, On
-      else
-        SetCapsLockState, AlwaysOff
-    return
+; Set Capslock as Ctrl
+$CapsLock::Ctrl
 
-; Shift+space goes to end of line, useful when exiting closing syntax
-; such as "", [], {}, and ()
-; {Esc} is there because shift+end selects everything from where
-; the cursor was to the end of the line
-+Space::send {End}{Esc}
+; RShift
+>+Space::Send, {Shift up}{End}
+
+; alt+hotkey
+; y for ()
+; u for []
+; i for {}
+; w for ""
+; e for "{{  }}" - Yaml variables
+; t for %%
+; ' for **
+
+!y::send, {(}{)}{Left}
 return
 
+!u::send, {[}{]}{Left}
+return
 
-; alt+y for paranthesis
-; alt+u for brackets
-; alt+i for braces
+!i::send, {{}{}}{Left}
+return
 
-!y::
-send {(}
-send {)}
-send {Left}
+!w::send, {" 2}{Left}
 return
-!u::
-send {[}
-send {]}
-send {Left}
+
+!e::Send, {"}{{ 2}{space 2}{}}{}}{"}{Left 4}
 return
-!i::
-send {{}
-send {}}
-send {Left}
+
+!t::send, {\% 2}{Left}
 return
+
+!'::send, {* 2}{Left}
+return
+
+; ` + 3 to send codeblock formatting
+
+` & 3::send, {` 6}{Left 3}
+return 
