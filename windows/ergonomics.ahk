@@ -5,21 +5,13 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #EscapeChar, |
 
-; Pauses the script // Rshift+Escape
->+Esc::Suspend, Toggle
-return
-  
-; Exits the script // RCtrl+Escape
->^Esc::ExitApp
 
-; RShift+Capslock to toggle CapsLock
->+CapsLock::CapsLock
+; RShift+LShift to toggle CapsLock
+LShift & RShift::CapsLock
+RShift & LShift::CapsLock
 
 ; Set Capslock as Ctrl
 $CapsLock::Ctrl
-
-; RShift
->+Space::Send, {Shift up}{End}
 
 ; alt+hotkey
 ; y for ()
@@ -53,4 +45,9 @@ return
 return
 
 !3::send, {` 6}{Left 3}
+return
+
+!4::send, ${{}{}}{Left 1}
+
+!+4::send, "${{}{}}"{Left 2}
 return
