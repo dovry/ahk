@@ -22,6 +22,8 @@ $CapsLock::Ctrl
 ; t for %%
 ; ' for **
 ; 3 for `````` - Markdown codeblock
+; 4 for ${} - Terraform variables
+; Shift+4 for "${}" - Standalone Terraform variables
 
 !y::send, {(}{)}{Left}
 return
