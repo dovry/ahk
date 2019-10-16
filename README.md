@@ -1,2 +1,3 @@
-# ahk
-AutoHotKey scripts that I find or make
+# AutoHotKey
+
+AutoHotKey scripts that I find, make or modify
