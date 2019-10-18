@@ -5,8 +5,12 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 #EscapeChar, |
 
+;reload script - use when editing
+;^r::Reload
+;return
+
 ; RShift+LShift to toggle CapsLock
-LShift & RShift::CapsLock
+;LShift & RShift::CapsLock
 RShift & LShift::CapsLock
 
 ; Set Capslock as Ctrl
@@ -51,4 +55,19 @@ return
 !4::send, ${{}{}}{Left 1}
 
 !+4::send, "${{}{}}"{Left 2}
+return
+
+
+;; Programs
+
+^!p::Run, Powershell.exe
+return
+
+; Bring vs code to focus if a window exists, else open
+^!c::
+IfWinExist, ahk_exe Code.exe
+  WinActivate, ahk_exe Code.exe
+else
+Run Code
+;MsgBox,,, bruh,0.5
 return
