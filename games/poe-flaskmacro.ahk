@@ -3,6 +3,8 @@
 #NoEnv
 #Warn
 #Persistent
+Menu, Tray, Icon, %A_WorkingDir%\icons\flask.png ,, 1
+
 
 ;https://autohotkey.com/docs/Hotkeys.htm
 ;https://autohotkey.com/docs/KeyList.htm
