@@ -2,8 +2,8 @@
 #NoEnv
 
 ;Removes the AHK icon from your taskbar, just remove these two lines if you really want the icon
-#NoTrayIcon
-
+;#NoTrayIcon
+Menu, Tray, Icon, %A_WorkingDir%\icons\d3.png ,, 1
 #SingleInstance Force
 #Persistent
 SetBatchLines -1
