@@ -5,6 +5,9 @@ SendMode Input
 SetWorkingDir %A_ScriptDir%
 #EscapeChar, |
 
+; icon
+Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
+
 ;reload script - use when editing
 ;^r::Reload
 ;return

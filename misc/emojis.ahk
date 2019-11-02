@@ -2,7 +2,6 @@
 #singleinstance, force
 Mod := 
 
-
 :*:shrug::
 SendInput, % "¯\_(" Chr(0x30C4) ")_/¯"
 return

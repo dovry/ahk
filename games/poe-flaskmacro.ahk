@@ -7,7 +7,7 @@
 ;https://autohotkey.com/docs/Hotkeys.htm
 ;https://autohotkey.com/docs/KeyList.htm
 
-1::
+2::
 {
 ;Initialize random delays between 57 and 114 ms (arbitrary values, may be changed)
 random, delay2, 57, 114
