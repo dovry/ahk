@@ -66,6 +66,10 @@ return
 ^!p::Run, Powershell.exe
 return
 
+^!+p::
+Run *RunAs Powershell.exe
+return
+
 ; Bring vs code to focus if a window exists, else open
 ^!c::
 IfWinExist, ahk_exe Code.exe
