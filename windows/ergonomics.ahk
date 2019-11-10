@@ -3,14 +3,20 @@
 #Persistent
 SendMode Input
 SetWorkingDir %A_ScriptDir%
-#EscapeChar, |
+;#EscapeChar, |
 
 ; icon
 Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
 
 ;reload script - use when editing
-;^r::Reload
-;return
+^r::Reload
+return
+
+;Ctrl+Alt+Shift+Down arrow to get a window's class
+!^+Down::
+  WinGetClass, class, A
+  MsgBox, The active window's class is "%class%".
+return
 
 ; RShift+LShift to toggle CapsLock
 ;LShift & RShift::CapsLock
@@ -46,7 +52,7 @@ return
 !e::Send, {"}{{ 2}{space 2}{}}{}}{"}{Left 4}
 return
 
-!t::send, {|% 2}{Left}
+!t::send, {`% 2}{Left}
 return
 
 !'::send, {* 2}{Left}
@@ -60,7 +66,6 @@ return
 !+4::send, "${{}{}}"{Left 2}
 return
 
-
 ;; Programs
 
 ^!p::Run, Powershell.exe
@@ -70,11 +75,17 @@ return
 Run *RunAs Powershell.exe
 return
 
+; Use ctrl+d to exit Powershell window, like other terminals
+#If (WinActive("ahk_exe powershell.exe"))
+^D::
+  Send, {Ctrl Down}c{Ctrl Up} exit {Enter}
+ return
+#If
+
 ; Bring vs code to focus if a window exists, else open
 ^!c::
 IfWinExist, ahk_exe Code.exe
   WinActivate, ahk_exe Code.exe
 else
 Run Code
-;MsgBox,,, bruh,0.5
 return
