@@ -9,8 +9,8 @@ SetWorkingDir %A_ScriptDir%
 Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
 
 ;reload script - use when editing
-^r::Reload
-return
+;^r::Reload
+;return
 
 ;Ctrl+Alt+Shift+Down arrow to get a window's class
 !^+Down::
