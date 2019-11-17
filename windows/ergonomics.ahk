@@ -1,5 +1,5 @@
 #NoEnv
-#singleinstance force
+#SingleInstance, force
 #Persistent
 SendMode Input
 SetWorkingDir %A_ScriptDir%
