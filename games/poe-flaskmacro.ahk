@@ -5,6 +5,10 @@
 #Persistent
 Menu, Tray, Icon, %A_WorkingDir%\icons\flask.png ,, 1
 
+;Pauses the script // Alt+Esc
+!Esc::
+  Suspend, Toggle
+  return
 
 ;https://autohotkey.com/docs/Hotkeys.htm
 ;https://autohotkey.com/docs/KeyList.htm
