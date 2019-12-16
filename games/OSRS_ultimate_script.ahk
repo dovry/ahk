@@ -39,9 +39,9 @@ SetTitleMatchMode, 2
 ;You may change the hotkey combinations to whatever you want
 ;Just make sure that no keys overlap
 
-; 	1. Hotkeys
+; 1. Hotkeys
 
-; 	//	! = Alt 	//
+; //	! = Alt 	//
 ;	//	^ = Ctrl 	//
 ;	//	+ = Shift 	//
 ;	//	# = Win key //
