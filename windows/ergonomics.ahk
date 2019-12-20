@@ -89,3 +89,6 @@ IfWinExist, ahk_exe Code.exe
 else
 Run Code
 return
+
+;Restart explorer.exe
+!F2::Process, Close, explorer.exe
