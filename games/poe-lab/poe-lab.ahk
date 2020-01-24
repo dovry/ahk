@@ -7,8 +7,8 @@ Menu, Tray, Icon, %A_WorkingDir%\poelab.png ,, 1
 #Persistent
 SetBatchLines -1
 SetTitleMatchMode, 2
-; global poeWindowName = "Path of Exile ahk_class POEWindowClass"
-; #IfWinActive poeWindowName
+;poeWindowName = "Path of Exile ahk_class POEWindowClass"
+;#IfWinActive poeWindowName
 
 ; *0 is caching - see https://www.autohotkey.com/docs/commands/URLDownloadToFile.htm
 poelab_website := "*0 https://www.poelab.com/wp-content/labfiles"
@@ -21,7 +21,16 @@ download_lab_layout()
 {
     global difficulty
     global poelab_website
-    UrlDownloadToFile, %poelab_website%/%A_YYYY%-%A_MM%-%A_DD%_%difficulty%.jpg, lab_images\%difficulty%_%A_dd%_%A_MMM%_%A_YYYY%.jpg
+    UrlDownloadToFile, %poelab_website%/%difficulty%-%A_YYYY%-%A_MM%-%A_DD%.json, C:\Users\%A_UserName%\Downloads\%difficulty%-%A_YYYY%-%A_MM%-%A_DD%.json
+    FileReadLine, first_line, C:\Users\%A_UserName%\Downloads\%difficulty%-%A_YYYY%-%A_MM%-%A_DD%.json, 1
+    if (first_line = "<!DOCTYPE html>") {
+        MsgBox, The Lord's Labyrinth has not been run yet.`nTry again later today.`n(The file will be deleted when you hit OK.)
+        FileDelete, C:\Users\%A_UserName%\Downloads\%difficulty%-%A_YYYY%-%A_MM%-%A_DD%.json
+    }
+    if (first_line = "your ip has been temporarily banned for too many consecutive 404s") {
+        MsgBox, Your IP has been temporarily banned for too many attempts.
+        FileDelete, C:\Users\%A_UserName%\Downloads\%difficulty%-%A_YYYY%-%A_MM%-%A_DD%.json
+    }
     return
 }
 
