@@ -36,6 +36,7 @@ $CapsLock::Ctrl
 ; 3 for `````` - Markdown codeblock
 ; 4 for ${} - Terraform variables
 ; Shift+4 for "${}" - Standalone Terraform variables
+; Shift+AltGr+4 for "$" - shell vars
 
 !y::send, {(}{)}{Left}
 return
@@ -65,6 +66,8 @@ return
 
 !+4::send, "${{}{}}"{Left 2}
 return
+
+<^>!+4::send, "$"{Left 1}
 
 ;; Programs
 
