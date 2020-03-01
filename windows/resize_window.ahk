@@ -1,16 +1,19 @@
-;Ignore this section
 #NoEnv
- 
-;Removes the AHK icon from your taskbar, just remove these two lines if you really want the icon
-;#NoTrayIcon
- 
-#SingleInstance Force
+#SingleInstance, force
 #Persistent
-SetBatchLines -1
-SetTitleMatchMode, 2
+SendMode Input
+SetWorkingDir %A_ScriptDir%
 
+; icon
+Menu, Tray, Icon, %A_WorkingDir%\icons\resize.png ,, 1
 
-; Resizes the client to whatever resolution you wish // Ctrl+F12
+; Get window stats, useful if you're going to be creating more presets below
+^F8::
+WinGetActiveStats, winT, winW, winH, winX, winY
+	MsgBox, % "Title of active window:`n" winT "`n`nCoords start at:`nx" winX ", y" winY "`n`nWidth x Height:`n" winW " x " winH
+return
+
+; Ctrl+F12
 ^F12::ResizeWin(1920,1080)
 ;   change this ^^^^^^^^^^^^
 ResizeWin(Width = 0,Height = 0)
@@ -23,7 +26,7 @@ ResizeWin(Width = 0,Height = 0)
   WinMove,A,,%X%,%Y%,%Width%,%Height%
 }
 
-; Resizes the client to whatever resolution you wish // Ctrl+F11
+; Ctrl+F11
 ^F11::ResizeWin(1376,768)
 ;   change this ^^^^^^^^^^^^
 ResizeWin2(Width = 0,Height = 0)
@@ -34,4 +37,17 @@ ResizeWin2(Width = 0,Height = 0)
   If %Height2% = 0
     Height := H
   WinMove,A,,%X%,%Y%,%Width2%,%Height2%
+}
+
+; Ctrl+F10
+^F10::ResizeWin(955,719)
+;   change this ^^^^^^^^^^^^
+ResizeWin3(Width = 0,Height = 0)
+{
+  WinGetPos,X,Y,W,H,A
+  If %Width2% = 0
+    Width := W
+  If %Height2% = 0
+    Height := H
+  WinMove,A,,%X%,%Y%,%Width3%,%Height3%
 }

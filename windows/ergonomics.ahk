@@ -18,6 +18,12 @@ Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
   MsgBox, The active window's class is "%class%".
 return
 
+; Ctrl+Alt+Shift+Up arrow to get a window's name
+!^+Up::
+WinGetTitle, Title, A
+MsgBox, The active window is "%Title%".
+return
+
 ; RShift+LShift to toggle CapsLock
 ;LShift & RShift::CapsLock
 RShift & LShift::CapsLock
@@ -68,6 +74,7 @@ return
 return
 
 <^>!+4::send, "$"{Left 1}
+return
 
 ;; Programs
 
