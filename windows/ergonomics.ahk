@@ -4,9 +4,22 @@
 SendMode Input
 SetWorkingDir %A_ScriptDir%
 ;#EscapeChar, |
-
 ; icon
 Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
+
+; add game exe's that should be ignore
+groupadd, games, ahk_exe ahk_exe RuneLite.exe
+groupadd, games, ahk_exe ahk_exe rs2client.exe
+
+SetTimer CheckWindow, 100
+CheckWindow:
+If WinActive("ahk_group games")
+  {
+  Suspend , On
+  Return
+  }
+Suspend , Off
+Return
 
 ;reload script - use when editing
 ;^r::Reload
@@ -102,3 +115,4 @@ return
 
 ;Restart explorer.exe
 !F2::Process, Close, explorer.exe
+

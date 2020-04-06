@@ -10,7 +10,8 @@ Menu, Tray, Icon, %A_WorkingDir%\icons\resize.png ,, 1
 ; Get window stats, useful if you're going to be creating more presets below
 ^F8::
 WinGetActiveStats, winT, winW, winH, winX, winY
-	MsgBox, % "Title of active window:`n" winT "`n`nCoords start at:`nx" winX ", y" winY "`n`nWidth x Height:`n" winW " x " winH
+WinGetClass, class, A
+MsgBox, % "Title is:`n" winT "`n`nClass is:`n" class "`n`nCoords start at:`nx" winX ", y" winY "`n`nWidth x Height:`n" winW " x " winH
 return
 
 ; Ctrl+F12
