@@ -7,7 +7,7 @@ SetWorkingDir %A_ScriptDir%
 ; icon
 Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
 
-; add game exe's that should be ignore
+; add game exe's that should be ignored
 groupadd, games, ahk_exe ahk_exe RuneLite.exe
 groupadd, games, ahk_exe ahk_exe rs2client.exe
 

@@ -46,9 +46,22 @@ ResizeWin2(Width = 0,Height = 0)
 ResizeWin3(Width = 0,Height = 0)
 {
   WinGetPos,X,Y,W,H,A
-  If %Width2% = 0
+  If %Width3% = 0
     Width := W
-  If %Height2% = 0
+  If %Height3% = 0
     Height := H
   WinMove,A,,%X%,%Y%,%Width3%,%Height3%
+}
+
+; Ctrl+F10
+^F9::ResizeWin(843,640)
+;   change this ^^^^^^^^^^^^
+ResizeWin4(Width = 0,Height = 0)
+{
+  WinGetPos,X,Y,W,H,A
+  If %Width4% = 0
+    Width := W
+  If %Height4% = 0
+    Height := H
+  WinMove,A,,%X%,%Y%,%Width4%,%Height4%
 }
