@@ -10,6 +10,7 @@ Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
 ; add game exe's that should be ignored
 groupadd, games, ahk_exe ahk_exe RuneLite.exe
 groupadd, games, ahk_exe ahk_exe rs2client.exe
+groupadd, games, ahk_exe ahk_exe Wow.exe
 
 SetTimer CheckWindow, 100
 CheckWindow:
@@ -43,6 +44,13 @@ RShift & LShift::CapsLock
 
 ; Set Capslock as Ctrl
 $CapsLock::Ctrl
+
+; Shift+Ctrl+Alt+R to restart sound driver
+!^+R::
+RunWait,sc stop "AudioSrv" ;Stop AudioSrv service.
+sleep 1
+RunWait,sc start "AudioSrv" ;Start AudioSrv service.
+return
 
 ; alt+hotkey
 ; y for ()
