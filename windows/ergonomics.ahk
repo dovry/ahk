@@ -7,24 +7,23 @@ SetWorkingDir %A_ScriptDir%
 ; icon
 Menu, Tray, Icon, %A_WorkingDir%\icons\ergonomics.png ,, 1
 
-; add game exe's that should be ignored
-groupadd, games, ahk_exe ahk_exe RuneLite.exe
-groupadd, games, ahk_exe ahk_exe rs2client.exe
-groupadd, games, ahk_exe ahk_exe Wow.exe
+^#!e::edit %A_ScriptName% ; edit the script
+^#!r::reload %A_ScriptName% ; reload the script
+
+; add EXEs that should be ignored
+groupadd, ignore, ahk_exe ahk_exe RuneLite.exe
+groupadd, ignore, ahk_exe ahk_exe rs2client.exe
+groupadd, ignore, ahk_exe ahk_exe Wow.exe
 
 SetTimer CheckWindow, 100
 CheckWindow:
-If WinActive("ahk_group games")
+If WinActive("ahk_group ignore")
   {
   Suspend , On
   Return
   }
 Suspend , Off
 Return
-
-;reload script - use when editing
-;^r::Reload
-;return
 
 ;Ctrl+Alt+Shift+Down arrow to get a window's class
 !^+Down::
@@ -50,6 +49,18 @@ $CapsLock::Ctrl
 RunWait,sc stop "AudioSrv" ;Stop AudioSrv service.
 sleep 1
 RunWait,sc start "AudioSrv" ;Start AudioSrv service.
+return
+
+;Send current date
+::..d::
+FormatTime, CurrentDate,, dd MMMM yyyy
+SendInput %CurrentDate%
+return
+
+; Send current Time
+::..t::
+FormatTime, CurrentDateTime,, HH:mm:ss
+SendInput %CurrentDateTime%
 return
 
 ; alt+hotkey
