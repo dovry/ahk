@@ -1,5 +1,6 @@
-﻿
-#SingleInstance, force
+﻿#SingleInstance, force
+Menu, Tray, Icon, %A_WorkingDir%\icons\kde.png ,, 1
+
 
 If (A_AhkVersion < "1.0.39.00")
 {
