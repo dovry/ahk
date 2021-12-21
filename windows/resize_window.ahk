@@ -3,20 +3,53 @@
 #Persistent
 SendMode Input
 SetWorkingDir %A_ScriptDir%
+Menu, Tray, Icon, %A_WorkingDir%\icons\resize.png ,, 1 ; icon
 
-; icon
-Menu, Tray, Icon, %A_WorkingDir%\icons\resize.png ,, 1
+#installKeybdHook
+TrayTip, %A_ScriptName%, Started, 1
+;SoundBeep, 250, 250
+;^#!r::reload %A_ScriptName% ; reload the script
 
-; Get window stats, useful if you're going to be creating more presets below
-^F8::
+
+^F8:: ; Get window stats to create more presets below
 WinGetActiveStats, winT, winW, winH, winX, winY
 WinGetClass, class, A
-MsgBox, % "Title is:`n" winT "`n`nClass is:`n" class "`n`nCoords start at:`nx" winX ", y" winY "`n`nWidth x Height:`n" winW " x " winH
+MsgBox, 
+(
+- TITLE
+%winT%
+
+- CLASS
+%class%
+
+- COORDINATES (top left corner)
+X %winX% , Y %winY%
+
+- DIMENSIONS
+%winW%  x  %winH%
+)
 return
 
-; Ctrl+F12
-^F12::ResizeWin(1920,1080)
-;   change this ^^^^^^^^^^^^
+^F12::ResizeWin(1920,1080) ; Ctrl+F12
+^+F12::ResizeWin(2280,1394) ; Shift+Ctrl+F12 ; 2/3rds of ultrawide
+^F11::ResizeWin(1376,768) ; Ctrl+F11
+^F10::ResizeWin(955,719) ; Ctrl+F10
+^F9::ResizeWin(843,640) ; Ctrl+F9
+^+F9::ResizeWin(1160,693) ;Shift+Ctrl+F9
+
+^!Lbutton:: ; ctrl+alt+Lbutton to toggle always on top
+WinGet, currentWindow, ID, A
+WinGet, ExStyle, ExStyle, ahk_id %currentWindow%
+if (ExStyle & 0x8)  ; 0x8 is WS_EX_TOPMOST.
+{
+   Winset, AlwaysOnTop, off, ahk_id %currentWindow%
+}
+else
+{
+   WinSet, AlwaysOnTop, on, ahk_id %currentWindow%
+}
+return
+
 ResizeWin(Width = 0,Height = 0)
 {
   WinGetPos,X,Y,W,H,A
@@ -27,41 +60,36 @@ ResizeWin(Width = 0,Height = 0)
   WinMove,A,,%X%,%Y%,%Width%,%Height%
 }
 
-; Ctrl+F11
-^F11::ResizeWin(1376,768)
-;   change this ^^^^^^^^^^^^
-ResizeWin2(Width = 0,Height = 0)
-{
-  WinGetPos,X,Y,W,H,A
-  If %Width2% = 0
-    Width := W
-  If %Height2% = 0
-    Height := H
-  WinMove,A,,%X%,%Y%,%Width2%,%Height2%
-}
+;-----------------------------
+;Collapse titlebar
+LWIN & LButton::
+WinSet, Style, -0xC00000, A
+return
 
-; Ctrl+F10
-^F10::ResizeWin(955,719)
-;   change this ^^^^^^^^^^^^
-ResizeWin3(Width = 0,Height = 0)
-{
-  WinGetPos,X,Y,W,H,A
-  If %Width3% = 0
-    Width := W
-  If %Height3% = 0
-    Height := H
-  WinMove,A,,%X%,%Y%,%Width3%,%Height3%
-}
+;Uncollapse titlebar
+LWIN & RButton::
+WinSet, Style, +0xC00000, A
+return
+;-----------------------------
 
-; Ctrl+F10
-^F9::ResizeWin(843,640)
-;   change this ^^^^^^^^^^^^
-ResizeWin4(Width = 0,Height = 0)
-{
-  WinGetPos,X,Y,W,H,A
-  If %Width4% = 0
-    Width := W
-  If %Height4% = 0
-    Height := H
-  WinMove,A,,%X%,%Y%,%Width4%,%Height4%
-}
+
+Gui, +ToolWindow +AlwaysOnTop -SysMenu -Caption +Border
+Gui, Color, cCCCCCC
+SetTimer, Draw, 100 
+
+Draw:
+MouseGetPos, MouseX, MouseY, MouseWin ; get mouse coords/window
+WinActivate, %MouseWin%
+
+WinGetActiveStats, Title, WinW, WinH, WinX, WinY ; get the stats of the active window
+
+; variables
+DrawW := (WinW)
+DrawH := (WinH)
+DrawX := (WinX - 1)
+DrawY := (WinY - 1) 
+
+; show the gui
+Gui, Show, NoActivate w%DrawW% h%DrawH% x%DrawX% y%DrawY%, Draw
+WinSet, TransColor, CCCCCC, Draw
+return
