@@ -13,8 +13,8 @@
 ; User Variables
 ;---------------------------------------------------------------------------------------------------------------------------------------;
 	;Behaviour
-		MonitoredFolder = C:\Users\ervod\Downloads
-		UnzipTo = C:\Users\ervod\Downloads\Compressed
+		MonitoredFolder = C:\Users\%A_UserName%\Downloads
+		UnzipTo = C:\Users\%A_UserName%\Downloads\Compressed
 		HowOftenToScanInSeconds = 15 ;How long we wait before re-scanning the folder for any changes.
 		ToolTips = 0 ;Show helper popups showing what the program is doing.
 		OverWrite = 1 ;Overwrite duplicate files?
